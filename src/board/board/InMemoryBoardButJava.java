@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 public class InMemoryBoardButJava implements Board {
 
@@ -150,7 +151,7 @@ public class InMemoryBoardButJava implements Board {
     @NotNull
     @Override
     public List<ResultDTO> getScoreBoard() {
-        return board.stream().map(game -> ResultKt.toDTO(game.getResult())).toList();
+        return board.stream().map(game -> ResultKt.toDTO(game.getResult())).collect(Collectors.toList());
     }
 
     @NotNull
@@ -167,7 +168,7 @@ public class InMemoryBoardButJava implements Board {
                 .stream()
                 .sorted(comparator)
                 .map(game -> ResultKt.toDTO(game.getResult()))
-                .toList();
+                .collect(Collectors.toList());
     }
 
     @NotNull
